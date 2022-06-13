@@ -52,15 +52,14 @@ using System.Linq;
 //Console.WriteLine($"sudé: {sude}, liché: {liche}");
 
 
-//úkol 4: 
+//úkol 4: vypište pole numbers pomocí slovního vyhádření z pole stringů 
 var numbers = new[] { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
 var strings = new[] { "zero", "one", "two", "three", "four",
     "five", "six", "seven", "eight", "nine" };
 
-foreach (var number in numbers)
-{
-    Console.WriteLine(strings[number]);
-}
+var result = numbers.Select(x => strings[x]);
+
+    Console.WriteLine(string.Join(", ", result ));
 
 
 
