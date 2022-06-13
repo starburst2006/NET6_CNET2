@@ -2,7 +2,6 @@
 using Model;
 
 
-Console.WriteLine("hello world");
 
 var booksdir = @"C:\Users\Student\source\repos\starburst2006\Books";
 
@@ -14,7 +13,7 @@ foreach(var file in files)
    
     Console.WriteLine(fileInfo.Name);
     
-    var orderedTop10 = result.OrderByDescending(kv => kv.Value).Take(10);
+    var orderedTop10 = result.Words.OrderByDescending(kv => kv.Value).Take(10);
 
     foreach (var item in orderedTop10)
     {
