@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿
 
 namespace Data
 {
@@ -7,7 +7,12 @@ namespace Data
         public static Dictionary<string, int> FreqAnalysisFromString(string imput)
         {
             var result = new Dictionary<string, int>();
-            var words = imput.Split(new String[] { " ", ",", ".", Environment.NewLine }, StringSplitOptions.TrimEntries);
+            var words = imput.Replace("."," ")
+                             .Replace(",", " ")
+                             .Replace("(", " ")
+                             .Replace(")", " ")
+                             .Replace(":", " ")
+                             .Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
             
             foreach (var word in words)
             {
