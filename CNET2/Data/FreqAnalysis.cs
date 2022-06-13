@@ -1,10 +1,26 @@
-﻿namespace Data
+﻿using System.Linq;
+
+namespace Data
 {
     public class FreqAnalysis
     {
         public static Dictionary<string, int> FreqAnalysisFromString(string imput)
         {
-            throw new NotImplementedException();  // nemám dopsáno, kompilátor mě nepustí zkompilovat, proto se dá obejít tímto zápisem...
+            var result = new Dictionary<string, int>();
+            var words = imput.Split(new String[] { " ", ",", ".", Environment.NewLine }, StringSplitOptions.TrimEntries);
+            
+            foreach (var word in words)
+            {
+                if (result.ContainsKey(word))
+                {
+                    result[word]++;
+                }
+                else 
+                { 
+                    result.Add(word, 1);
+                }
+            }
+            return result;
         }
 
         public static async Task<Dictionary<string, int>> FreqAnalysisFromUrl(string url)
