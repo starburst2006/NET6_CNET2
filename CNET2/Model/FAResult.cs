@@ -5,7 +5,14 @@
     /// </summary>
     public class FAResult
     {
-        
+        public FAResult(string source, SourceType sourceType)
+        {
+            Source = source;
+            SourceType = sourceType;
+            Words = new Dictionary<string, int>();
+
+        }
+
         /// <summary>
         /// zdroj textu
         /// </summary>
