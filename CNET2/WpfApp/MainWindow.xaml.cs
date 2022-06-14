@@ -63,9 +63,14 @@ namespace WpfApp
             txbInfo.Text = "";
             var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
 
+
+            PBparalel.Value = 0;
+            PBparalel.Maximum = files.Count();
+
             IProgress<string> progress = new Progress<string>(message =>
             {
                 txbInfo.Text += message;
+                PBparalel.Value++;
             });
 
             await Parallel.ForEachAsync(files,async (file, cancellationToken) =>             // paralelní foreach - styl zápisu
