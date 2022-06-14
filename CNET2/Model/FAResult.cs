@@ -21,6 +21,7 @@
         public Dictionary<string, int> GetTop10() => Words.OrderByDescending(kv => kv.Value).Take(10).ToDictionary(kv => kv.Key, kv => kv.Value);
         
 
+
         public override string ToString()
         {
             return $"{Source} {Words?.Count}";

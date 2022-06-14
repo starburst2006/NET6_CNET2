@@ -31,10 +31,7 @@ namespace WpfApp
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
-
             Stopwatch s = Stopwatch.StartNew();  // stopování času
-
-            //txbInfo.Text = "Načítám soubory...";
             txbInfo.Text = "";
             var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
 
@@ -56,6 +53,43 @@ namespace WpfApp
 
             s.Stop();   // konec časomíry
             txbInfo.Text += $"{Environment.NewLine} Uplynulý čas { s.ElapsedMilliseconds}";
+            Mouse.OverrideCursor = null;
+        }
+
+        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+            txbInfo.Text = "";
+            var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
+
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message;
+            });
+
+            Parallel.ForEach(files, file =>             // paralelní foreach - styl zápisu
+            {
+                var result = FreqAnalysis.FreqAnalysisFromFile(file);
+                string message = "";
+                message += result.Source + Environment.NewLine;
+
+                message += $"________________________ {Environment.NewLine}";
+
+                foreach (var word in result.GetTop10())
+                {
+                    message += $"{word.Key} : {word.Value} {Environment.NewLine}";
+                }
+
+                message += Environment.NewLine;
+                progress.Report(message);
+            });
+
+
+
+            s.Stop();   // konec časomíry
+            FRMName.Title = $"{Environment.NewLine} Uplynulý čas {s.ElapsedMilliseconds}";   // přepíši titulek okna
+            progress.Report($"{Environment.NewLine} Uplynulý čas {s.ElapsedMilliseconds}");   // txbInfo.text => upraveno do progressu kvůli správnému pořadí výpisu  
             Mouse.OverrideCursor = null;
         }
     }
