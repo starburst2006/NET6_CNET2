@@ -13,8 +13,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnLoadFiles" Content="Sekvenční" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" Click="btnLoadFiles_Click"/>
-        <Button x:Name="btnParallel1" Content="Paralelní" Grid.Row="0" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="24" Click="btnParallel1_Click"/>
+        <Button x:Name="btnLoadFiles" Content="Sekvenční" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnLoadFiles_Click"/>
+        <Button x:Name="btnParallel1" Content="Paralelní" Grid.Row="0" HorizontalAlignment="Left" Margin="99,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnParallel1_Click"/>
+        <Button x:Name="btnTaskFirst1" Content="Task First" Grid.Row="0" HorizontalAlignment="Left" Margin="180,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskFirst_Click" RenderTransformOrigin="0.457,0.423"/>
+        <Button x:Name="btnTaskAll1" Content="Task All" Grid.Row="0" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskAll_Click"/>
+        <Button x:Name="btnTaskFirstWhen" Content="Task When First" Grid.Row="0" HorizontalAlignment="Left" Margin="332,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskFirstWhen_Click"/>
+        <Button x:Name="btnTaskAllWhen" Content="Task When All" Grid.Row="0" HorizontalAlignment="Left" Margin="461,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskAllWhen_Click"/>
+
 
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TextBlock x:Name="txbInfo"  Margin="0,0,0,0"  TextWrapping="Wrap"  Text="Zde se objeví výsledek" Padding="10,10,10,10"/>

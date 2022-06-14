@@ -64,8 +64,8 @@ namespace WpfApp
             var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
 
 
-            PBparalel.Value = 0;
-            PBparalel.Maximum = files.Count();
+            PBparalel.Value = 0;   // vynulování progressbaru
+            PBparalel.Maximum = files.Count();    // nastavení maximální hodnoty
 
             IProgress<string> progress = new Progress<string>(message =>
             {
@@ -96,6 +96,55 @@ namespace WpfApp
             FRMName.Title = $"{Environment.NewLine} Uplynulý čas {s.ElapsedMilliseconds}";   // přepíši titulek okna
             progress.Report($"{Environment.NewLine} Uplynulý čas {s.ElapsedMilliseconds}");   // txbInfo.text => upraveno do progressu kvůli správnému pořadí výpisu  
             Mouse.OverrideCursor = null;
+        }
+
+        private void btnTaskFirst_Click(object sender, RoutedEventArgs e)
+        {
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz";
+
+            var t1 = Task.Run( () => LoadWebPage.LoadUrl(url1));
+            var t2 = Task.Run( () => LoadWebPage.LoadUrl(url2));
+            var t3 = Task.Run( () => LoadWebPage.LoadUrl(url3));
+            Task.WaitAny(t1, t2, t3);
+
+
+            s.Stop();   // konec časomíry
+
+            txbInfo.Text = $"Doběhl první task... {s.ElapsedMilliseconds} ms";
+
+        }
+
+        private void btnTaskAll_Click(object sender, RoutedEventArgs e)
+        {
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz";
+
+            var t1 = Task.Run(() => LoadWebPage.LoadUrl(url1));
+            var t2 = Task.Run(() => LoadWebPage.LoadUrl(url2));
+            var t3 = Task.Run(() => LoadWebPage.LoadUrl(url3));
+            Task.WaitAll(t1, t2, t3);
+
+
+            s.Stop();   // konec časomíry
+
+            txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms";
+        }
+
+        private void btnTaskFirstWhen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTaskAllWhen_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
