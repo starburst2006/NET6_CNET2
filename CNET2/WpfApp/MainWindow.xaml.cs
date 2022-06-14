@@ -176,7 +176,7 @@ namespace WpfApp
             var t1 = Task.Run(() => LoadWebPage.LoadUrl(url1));
             var t2 = Task.Run(() => LoadWebPage.LoadUrl(url2));
             var t3 = Task.Run(() => LoadWebPage.LoadUrl(url3));
-            int[] allDone = await Task.WhenAll(t1, t2, t3);
+            var allDone = await Task.WhenAll(t1, t2, t3);
 
 
             s.Stop();   // konec časomíry
