@@ -56,7 +56,7 @@ namespace WpfApp
             Mouse.OverrideCursor = null;
         }
 
-        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        private async void btnParallel1_Click(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
             Stopwatch s = Stopwatch.StartNew();  // stopování času
@@ -68,7 +68,7 @@ namespace WpfApp
                 txbInfo.Text += message;
             });
 
-            Parallel.ForEach(files, file =>             // paralelní foreach - styl zápisu
+            await Parallel.ForEachAsync(files,async (file, cancellationToken) =>             // paralelní foreach - styl zápisu
             {
                 var result = FreqAnalysis.FreqAnalysisFromFile(file);
                 string message = "";
