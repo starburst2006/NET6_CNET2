@@ -169,7 +169,7 @@ namespace WpfApp
             Stopwatch s = Stopwatch.StartNew();  // stopování času
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
 
-            string url1 = "https://seznam.cz";
+            string url1 = "https://sezdfghnam.cz";
             string url2 = "https://seznamzpravy.cz";
             string url3 = "https://www.ictpro.cz";
 
