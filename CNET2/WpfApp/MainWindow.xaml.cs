@@ -1,6 +1,7 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,7 +30,10 @@ namespace WpfApp
 
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
-            Mouse.OverrideCursor = Cursors.Wait;
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+
             //txbInfo.Text = "Načítám soubory...";
             txbInfo.Text = "";
             var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
@@ -49,6 +53,9 @@ namespace WpfApp
                 txbInfo.Text += Environment.NewLine;
 
             }
+
+            s.Stop();   // konec časomíry
+            txbInfo.Text += $"{Environment.NewLine} Uplynulý čas { s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null;
         }
     }
