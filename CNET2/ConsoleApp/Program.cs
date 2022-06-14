@@ -2,22 +2,22 @@
 using Model;
 using System.Linq;
 
-Client client1 = new Client() { Name = "Petra" };
-Client client2 = new Client() { Name = "Alena" };
-VIPClient client3 = new VIPClient() { Name = "Monika", Status = "Gold" };
+//Client client1 = new Client() { Name = "Petra" };
+//Client client2 = new Client() { Name = "Alena" };
+//VIPClient client3 = new VIPClient() { Name = "Monika", Status = "Gold" };
 
 
-GreetClient(client1);
-GreetClient(client2);
-GreetClient(client3);
+//GreetClient(client1);
+//GreetClient(client2);
+//GreetClient(client3);
 
 
 
 
-static void GreetClient(IGreetable client)
-{
-    Console.WriteLine(client.SayHello());
-}
+//static void GreetClient(IGreetable client)
+//{
+//    Console.WriteLine(client.SayHello());
+//}
 
 
 

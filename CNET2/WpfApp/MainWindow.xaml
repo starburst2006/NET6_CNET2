@@ -13,7 +13,8 @@
         </Grid.RowDefinitions>
         
         <Button x:Name="btnLoadFiles" Content="Načti soubory" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="24" Click="btnLoadFiles_Click"/>
-        <TextBlock x:Name="txbInfo" HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch" Text="Zde se objeví výsledek" Padding="10,10,10,10"/>
-
+        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TextBlock x:Name="txbInfo"  Margin="0,0,0,0"  TextWrapping="Wrap"  Text="Zde se objeví výsledek" Padding="10,10,10,10"/>
+        </ScrollViewer>
     </Grid>
 </Window>

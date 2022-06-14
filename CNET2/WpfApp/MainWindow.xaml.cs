@@ -29,14 +29,24 @@ namespace WpfApp
 
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
-            txbInfo.Text = "Načítám soubory...";
-
+            //txbInfo.Text = "Načítám soubory...";
+            txbInfo.Text = "";
             var files = Directory.EnumerateFiles(@"C:\Users\Student\source\repos\starburst2006\BigFiles", "*.txt");
 
             foreach(var file in files)
             {
                 var result = FreqAnalysis.FreqAnalysisFromFile(file);
-                txbInfo.Text += result.Source;
+                txbInfo.Text += result.Source + Environment.NewLine;
+
+                txbInfo.Text += $"________________________ {Environment.NewLine}";
+
+                foreach( var word in result.GetTop10())
+                {
+                    txbInfo.Text += $"{word.Key} : {word.Value} {Environment.NewLine}";
+                }
+
+                txbInfo.Text += Environment.NewLine;
+
             }
 
         }
