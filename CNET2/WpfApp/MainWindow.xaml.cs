@@ -98,10 +98,11 @@ namespace WpfApp
             Mouse.OverrideCursor = null;
         }
 
-        private void btnTaskFirst_Click(object sender, RoutedEventArgs e)
+        private void btnTaskFirst_Click(object sender, RoutedEventArgs e)  // čeká na první načtenou stránku, do té doby je aplikace zamrzlá
         {
             Stopwatch s = Stopwatch.StartNew();  // stopování času
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            txbInfo.Text = "";
 
             string url1 = "https://seznam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -120,10 +121,11 @@ namespace WpfApp
 
         }
 
-        private void btnTaskAll_Click(object sender, RoutedEventArgs e)
+        private void btnTaskAll_Click(object sender, RoutedEventArgs e) // čeká na všechny načtené stránky, do té doby je aplikace zamrzlá
         {
             Stopwatch s = Stopwatch.StartNew();  // stopování času
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            txbInfo.Text = "";
 
             string url1 = "https://seznam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -141,10 +143,11 @@ namespace WpfApp
             txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms";
         }
 
-        private async void btnTaskFirstWhen_Click(object sender, RoutedEventArgs e)
+        private async void btnTaskFirstWhen_Click(object sender, RoutedEventArgs e) // čeká na první načtenou stránku, do té doby je aplikace responsivní
         {
             Stopwatch s = Stopwatch.StartNew();  // stopování času
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            txbInfo.Text = "";
 
             string url1 = "https://seznam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -164,10 +167,12 @@ namespace WpfApp
 
         }
 
-        private async void btnTaskAllWhen_Click(object sender, RoutedEventArgs e)
+        private async void btnTaskAllWhen_Click(object sender, RoutedEventArgs e) // čeká na poslední načtenou stránku, do té doby je aplikace responsivní
         {
+                        
             Stopwatch s = Stopwatch.StartNew();  // stopování času
             Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            txbInfo.Text = "";
 
             string url1 = "https://sezdfghnam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -185,6 +190,42 @@ namespace WpfApp
             txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms. Weby jsou dlouhé {string.Join(", ", allDone)} znaků";
 
 
+        }
+
+        private async void btnTaskAllWhenProgress_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string[] urls = { "https://sezdfghnam.cz", "https://seznamzpravy.cz", "https://www.ictpro.cz", "https://www.google.com", "https://www.novinky.cz", "https://www.bbc.co.uk", "https://seznam.cz", "https://firebrno.cz", "https://www.centrum.cz", "https://www.sdhzidenice.cz", "https://www.lidovky.cz", "https://www.nipez.cz" };
+           
+            PBparalel.Value = 0;   // vynulování progressbaru
+            PBparalel.Maximum = urls.Length;    // nastavení maximální hodnoty
+
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+            txbInfo.Text = "";
+
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message + Environment.NewLine;
+                PBparalel.Value++;
+            });
+
+
+            List<Task<(int?, string, bool)>> tasks = new List<Task<(int?, string, bool)>>();
+      
+            foreach(var url in urls)
+            {
+                tasks.Add(Task.Run(() => LoadWebPage.LoadUrl(url, progress)));
+            }
+            
+            
+            var results = await Task.WhenAll(tasks);
+
+
+            s.Stop();   // konec časomíry
+            Mouse.OverrideCursor = null;
+
+            //txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms. Weby jsou dlouhé {string.Join(", ", results)} znaků";
         }
     }
 }

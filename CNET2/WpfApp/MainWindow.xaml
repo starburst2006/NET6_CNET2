@@ -19,10 +19,11 @@
         <Button x:Name="btnTaskAll1" Content="Task All" Grid.Row="0" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskAll_Click"/>
         <Button x:Name="btnTaskFirstWhen" Content="Task When First" Grid.Row="0" HorizontalAlignment="Left" Margin="332,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskFirstWhen_Click"/>
         <Button x:Name="btnTaskAllWhen" Content="Task When All" Grid.Row="0" HorizontalAlignment="Left" Margin="461,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskAllWhen_Click"/>
+        <Button x:Name="btnTaskAllWhenProgress" Content="Task When All Progress" Grid.Row="0" HorizontalAlignment="Left" Margin="582,10,0,0" VerticalAlignment="Top" FontSize="16" Click="btnTaskAllWhenProgress_Click"/>
 
 
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <TextBlock x:Name="txbInfo"  Margin="0,0,0,0"  TextWrapping="Wrap"  Text="Zde se objeví výsledek" Padding="10,10,10,10"/>
+            <TextBlock x:Name="txbInfo"  Margin="0,0,0,0"  TextWrapping="Wrap" Padding="10,10,10,10"/>
         </ScrollViewer>
         <ProgressBar x:Name="PBparalel" HorizontalAlignment="Left" Height="6" Margin="65,67,0,0" VerticalAlignment="Top" Width="647"/>
     </Grid>
