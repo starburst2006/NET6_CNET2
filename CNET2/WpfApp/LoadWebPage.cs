@@ -10,7 +10,7 @@ namespace WpfApp
 {
     public static class LoadWebPage
     {
-        public static (int Length, string Url, bool success) LoadUrl(string url)
+        public static (int? Length, string Url, bool success) LoadUrl(string url)
         {
 
             try
@@ -24,7 +24,7 @@ namespace WpfApp
             {
                 // todo log
                 File.AppendAllText("errors.txt", $"{DateTime.Now} {ex.Message}{Environment.NewLine}");
-                return (0, url, false);
+                return (null, url, false);
             }        
         }
     }
