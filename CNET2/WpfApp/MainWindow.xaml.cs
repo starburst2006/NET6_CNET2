@@ -101,6 +101,7 @@ namespace WpfApp
         private void btnTaskFirst_Click(object sender, RoutedEventArgs e)
         {
             Stopwatch s = Stopwatch.StartNew();  // stopování času
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
 
             string url1 = "https://seznam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -113,6 +114,7 @@ namespace WpfApp
 
 
             s.Stop();   // konec časomíry
+            Mouse.OverrideCursor = null;
 
             txbInfo.Text = $"Doběhl první task... {s.ElapsedMilliseconds} ms";
 
@@ -121,6 +123,7 @@ namespace WpfApp
         private void btnTaskAll_Click(object sender, RoutedEventArgs e)
         {
             Stopwatch s = Stopwatch.StartNew();  // stopování času
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
 
             string url1 = "https://seznam.cz";
             string url2 = "https://seznamzpravy.cz";
@@ -133,17 +136,54 @@ namespace WpfApp
 
 
             s.Stop();   // konec časomíry
+            Mouse.OverrideCursor = null;
 
             txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms";
         }
 
-        private void btnTaskFirstWhen_Click(object sender, RoutedEventArgs e)
+        private async void btnTaskFirstWhen_Click(object sender, RoutedEventArgs e)
         {
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz";
+
+            var t1 = Task.Run(() => LoadWebPage.LoadUrl(url1));
+            var t2 = Task.Run(() => LoadWebPage.LoadUrl(url2));
+            var t3 = Task.Run(() => LoadWebPage.LoadUrl(url3));
+            var firstDone = await Task.WhenAny(t1, t2, t3);
+           
+
+            s.Stop();   // konec časomíry
+            Mouse.OverrideCursor = null;
+
+            txbInfo.Text = $"Doběhl první task... {s.ElapsedMilliseconds} ms. Web lenght je {firstDone.Result}";
+
 
         }
 
-        private void btnTaskAllWhen_Click(object sender, RoutedEventArgs e)
+        private async void btnTaskAllWhen_Click(object sender, RoutedEventArgs e)
         {
+            Stopwatch s = Stopwatch.StartNew();  // stopování času
+            Mouse.OverrideCursor = Cursors.Wait;  // změní kurzor na hodiny po dobu operace
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz";
+
+            var t1 = Task.Run(() => LoadWebPage.LoadUrl(url1));
+            var t2 = Task.Run(() => LoadWebPage.LoadUrl(url2));
+            var t3 = Task.Run(() => LoadWebPage.LoadUrl(url3));
+            int[] allDone = await Task.WhenAll(t1, t2, t3);
+
+
+            s.Stop();   // konec časomíry
+            Mouse.OverrideCursor = null;
+
+            txbInfo.Text = $"Doběhly všechny tasky... {s.ElapsedMilliseconds} ms. Weby jsou dlouhé {string.Join(", ", allDone)} znaků";
+
 
         }
     }
