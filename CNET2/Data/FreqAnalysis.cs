@@ -1,6 +1,4 @@
-﻿
-
-using Model;
+﻿using Model;
 
 namespace Data
 {
@@ -9,12 +7,7 @@ namespace Data
         public static Dictionary<string, int> FreqAnalysisFromString(string imput)
         {
             var result = new Dictionary<string, int>();
-            var words = imput.Replace("."," ")
-                             .Replace(",", " ")
-                             .Replace("(", " ")
-                             .Replace(")", " ")
-                             .Replace(":", " ")
-                             .Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            var words = imput.Split(Environment.NewLine);
             
             foreach (var word in words)
             {

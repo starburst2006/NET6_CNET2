@@ -5,7 +5,6 @@ using System.Linq;
 
 
 
-//int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 // where filtrace
 //var result = numbers.Where(x => x >= 1 && x <= 99);
@@ -34,6 +33,7 @@ using System.Linq;
 
 
 
+//int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 //úkol 1: zjistěte počet kladných čísel
 //var result = numbers.Where(x => x>=0).Count();
@@ -52,17 +52,14 @@ using System.Linq;
 //Console.WriteLine($"sudé: {sude}, liché: {liche}");
 
 
-//úkol 4: vypište pole numbers pomocí slovního vyhádření z pole stringů 
-var numbers = new[] { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
-var strings = new[] { "zero", "one", "two", "three", "four",
-    "five", "six", "seven", "eight", "nine" };
+////úkol 4: vypište pole numbers pomocí slovního vyhádření z pole stringů 
+//var numbers = new[] { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+//var strings = new[] { "zero", "one", "two", "three", "four",
+//    "five", "six", "seven", "eight", "nine" };
+//var result = numbers.Select(x => strings[x]);
+//Console.WriteLine(string.Join(", ", result));
 
-var result = numbers.Select(x => strings[x]);
-
-    Console.WriteLine(string.Join(", ", result ));
-
-
-
+//Console.ReadKey();
 
 
 //static void FreqWords()
