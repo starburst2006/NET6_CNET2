@@ -130,9 +130,9 @@ var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\sta
 //Console.WriteLine($"Nejstarší : {nejstarsi.ToString()}, věk: {nejstarsi.Age()}");
 
 
-var result = dataset.Select(p => new { p.FullName, Age = p.Age() });
+var result = dataset.Select(p => ( Name: p.FullName, Age: p.Age() ));
 
 foreach (var item in result)
 {
-    Console.WriteLine(item.FullName + " " + item.Age);
+    Console.WriteLine(item.Name + " " + item.Age);   
 }
