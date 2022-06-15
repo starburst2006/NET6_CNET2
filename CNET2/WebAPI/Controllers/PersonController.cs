@@ -30,5 +30,11 @@ namespace WebAPI.Controllers
         {
            return _db.Persons.Include(x => x.Contracts).Include(x => x.HomeAddress).Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
         }
+
+        [HttpGet("GetById/{id}")]
+        public Person GetById(int id)
+        {
+            return _db.Persons.Include(x => x.Contracts).Include(x => x.HomeAddress).Where(p => p.Id == id).FirstOrDefault();
+        }
     }
 }
