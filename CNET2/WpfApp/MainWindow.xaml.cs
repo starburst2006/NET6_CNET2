@@ -195,7 +195,7 @@ namespace WpfApp
         private async void btnTaskAllWhenProgress_Click(object sender, RoutedEventArgs e)
         {
             
-            string[] urls = { "https://sezdfghnam.cz", "https://seznamzpravy.cz", "https://www.ictpro.cz", "https://www.google.com", "https://www.novinky.cz", "https://www.bbc.co.uk", "https://seznam.cz", "https://firebrno.cz", "https://www.centrum.cz", "https://www.sdhzidenice.cz", "https://www.lidovky.cz", "https://www.nipez.cz" };
+            string[] urls = { "https://seznamzpravy.cz", "https://www.ictpro.cz", "https://www.google.com", "https://www.novinky.cz", "https://www.bbc.co.uk", "https://seznam.cz", "https://firebrno.cz", "https://www.centrum.cz", "http://www.sdhzidenice.cz", "https://www.lidovky.cz" };
            
             PBparalel.Value = 0;   // vynulování progressbaru
             PBparalel.Maximum = urls.Length;    // nastavení maximální hodnoty

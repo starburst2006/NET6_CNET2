@@ -23,7 +23,6 @@ namespace WpfApp
             }
             catch (Exception ex)
             {
-                // todo log
                 File.AppendAllText("errors.txt", $"{DateTime.Now} {ex.Message}{Environment.NewLine}");
                 progress?.Report("Error: " + url);
                 return (null, url, false);
