@@ -2,6 +2,17 @@
 using Model;
 using System.Linq;
 
+
+var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
+
+using var db = new PersonContext();
+
+db.Persons.AddRange(dataset);
+db.SaveChanges();
+
+Console.WriteLine("ok");
+
+
 //Client client1 = new Client() { Name = "Petra" };
 //Client client2 = new Client() { Name = "Alena" };
 //VIPClient client3 = new VIPClient() { Name = "Monika", Status = "Gold" };
@@ -101,10 +112,6 @@ using System.Linq;
 //        Console.WriteLine();
 //    }
 //}
-
-var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
-
-
 //Console.WriteLine($"celkový počet lidí: {dataset.Count()}");
 
 
