@@ -137,15 +137,25 @@ var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\sta
 //}
 
 
+// seskup osoby podle města a následně vypiš
+//var res2 = dataset.GroupBy(p => p.HomeAddress.City);
+//foreach (var item in res2)
+//{
+//    Console.WriteLine($"___________________{Environment.NewLine}Město: {item.Key} Počet lidí: {item.Count()}{Environment.NewLine}");
+//    foreach (var group in item) {
+//        Console.WriteLine($"{group.FullName}");
+//    }
+//}
 
-// seskup osoby podle města
 
-var res2 = dataset.GroupBy(p => p.HomeAddress.City);
-foreach (var item in res2)
-{
-    Console.WriteLine($"___________________{Environment.NewLine}Město: {item.Key} Počet lidí: {item.Count()}{Environment.NewLine}");
+//selectmany - získat všechny smlouvy
+//var result = dataset.SelectMany(p => p.Contracts);
+//Console.WriteLine($"Počet smluv celkem: {result.Count()}");
 
-    foreach (var group in item) {
-        Console.WriteLine($"{group.FullName}");
-    }
-}
+//zjisti kdo uzavřel poslední smlouvu
+var withContract = dataset.Where(p => p.Contracts.Any());
+var result = withContract
+        .OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed)
+        .First();
+
+Console.WriteLine(result);
