@@ -105,28 +105,34 @@ using System.Linq;
 var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
 
 
-Console.WriteLine($"celkový počet lidí: {dataset.Count()}");
+//Console.WriteLine($"celkový počet lidí: {dataset.Count()}");
 
 
-// kolik lidí má smlouvu
-var result = dataset.Where(x => x.Contracts.Any()).Count();
-Console.WriteLine($"počet lidí se smlouvou: {result}");
+//// kolik lidí má smlouvu
+//var result = dataset.Where(x => x.Contracts.Any()).Count();
+//Console.WriteLine($"počet lidí se smlouvou: {result}");
 
-// kolik lidí je z Brna
-var res2 = dataset.Where(x => x.HomeAddress.City == "Brno").Count();
-Console.WriteLine($"počet lidí z Brna: {res2}");
+//// kolik lidí je z Brna
+//var res2 = dataset.Where(x => x.HomeAddress.City == "Brno").Count();
+//Console.WriteLine($"počet lidí z Brna: {res2}");
 
-// vypsat lidi z Brna
-foreach(Person people in dataset.Where(x => x.HomeAddress.City == "Brno"))
+//// vypsat lidi z Brna
+//foreach(Person people in dataset.Where(x => x.HomeAddress.City == "Brno"))
+//{
+//    Console.WriteLine(people.ToString());   
+//}
+
+////nejstarší a nejmladší, jejich jméno a věk
+//var nejmladsi = dataset.OrderByDescending(x => x.DateOfBirth).First();
+//var nejstarsi = dataset.OrderBy(x => x.DateOfBirth).First();
+
+//Console.WriteLine($"Nejmladší : {nejmladsi.ToString()}, věk: {nejmladsi.Age()}");
+//Console.WriteLine($"Nejstarší : {nejstarsi.ToString()}, věk: {nejstarsi.Age()}");
+
+
+var result = dataset.Select(p => new { p.FullName, p.DateOfBirth });
+
+foreach (var item in result)
 {
-    Console.WriteLine(people.ToString());   
+    Console.WriteLine(item.FullName + " " + item.DateOfBirth.ToString("dd. MM. yyyy"));
 }
-
-//nejstarší a nejmladší, jejich jméno a věk
-
-var nejmladsi = dataset.OrderByDescending(x => x.DateOfBirth).First();
-var nejstarsi = dataset.OrderBy(x => x.DateOfBirth).First();
-
-Console.WriteLine($"Nejmladší : {nejmladsi.ToString()}, věk: {nejmladsi.Age()}");
-Console.WriteLine($"Nejstarší : {nejstarsi.ToString()}, věk: {nejstarsi.Age()}");
-
