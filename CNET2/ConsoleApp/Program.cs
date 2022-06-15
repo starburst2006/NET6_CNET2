@@ -153,9 +153,9 @@ var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\sta
 //Console.WriteLine($"Počet smluv celkem: {result.Count()}");
 
 //zjisti kdo uzavřel poslední smlouvu
-var withContract = dataset.Where(p => p.Contracts.Any());
-var result = withContract
-        .OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed)
-        .First();
+//var withContract = dataset.Where(p => p.Contracts.Any());
+//var result = withContract
+//        .OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed)
+//        .First();
 
-Console.WriteLine(result);
+//Console.WriteLine(result);
