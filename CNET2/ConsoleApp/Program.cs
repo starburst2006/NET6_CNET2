@@ -130,9 +130,22 @@ var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\sta
 //Console.WriteLine($"Nejstarší : {nejstarsi.ToString()}, věk: {nejstarsi.Age()}");
 
 
-var result = dataset.Select(p => ( Name: p.FullName, Age: p.Age() ));
+//var result = dataset.Select(p => ( Name: p.FullName, Age: p.Age() ));
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item.Name + " " + item.Age);   
+//}
 
-foreach (var item in result)
+
+
+// seskup osoby podle města
+
+var res2 = dataset.GroupBy(p => p.HomeAddress.City);
+foreach (var item in res2)
 {
-    Console.WriteLine(item.Name + " " + item.Age);   
+    Console.WriteLine($"___________________{Environment.NewLine}Město: {item.Key} Počet lidí: {item.Count()}{Environment.NewLine}");
+
+    foreach (var group in item) {
+        Console.WriteLine($"{group.FullName}");
+    }
 }
