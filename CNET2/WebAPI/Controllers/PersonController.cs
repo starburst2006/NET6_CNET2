@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace WebAPI.Controllers
@@ -20,14 +21,14 @@ namespace WebAPI.Controllers
         [HttpGet("GetAll")]
         public IEnumerable<Person> GetPeople()
         {
-            return _db.Persons; 
+            return _db.Persons.Include(x=>x.Contracts).Include(x=>x.HomeAddress);   // aby načetl i vazbené tabulky, přidám je do include. Jinak načte jen tabulku persons
         }
 
         //vypiš osobu dle emailu
         [HttpGet("GetByEmail/{email}")]
         public Person GetByEmail(string email)
         {
-           return _db.Persons.Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
+           return _db.Persons.Include(x => x.Contracts).Include(x => x.HomeAddress).Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
         }
     }
 }
