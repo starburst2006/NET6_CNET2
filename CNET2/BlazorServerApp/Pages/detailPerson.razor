@@ -1,8 +1,44 @@
-﻿@page "/detailPerson"
+﻿@page "/DetailPerson/{Id:int}"
+@using Microsoft.EntityFrameworkCore
+@using Model
+@inject PersonContext db
+
 
 
 <h3>Detail osoby</h3>
 
-@code {
+<div>
+    Osoba Id: @Id, jméno @Person.FullName
+</div>
 
+<div>
+    Jméno: @Person.FirstName <br />
+    Příjmení: @Person.LastName <br />
+    Datum narození: @Person.DateOfBirthDateOnly
+</div>
+
+<div>
+    Smlouvy (@Person.Contracts.Count()):
+
+    @foreach(var contract in Person.Contracts)
+    {
+        @contract.Id <br />
+    }
+
+
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public Person? Person { get; set; }
+
+
+
+   protected override void OnInitialized()
+    {
+     Person = db.Persons.Include(a=>a.HomeAddress).Include(c=>c.Contracts).ThenInclude(c=>c.Company).FirstOrDefault(x => x.Id == Id);  
+    
+    }
 }
