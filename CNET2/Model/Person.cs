@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,14 @@ namespace Model
             }
         }
 
+        [NotMapped]       // nebude v databázi ale je napojen na db tzn když do něj zapíšu, uloží to do db přes property DateOfBirth, GUI budu předhazovat toto
+        public DateOnly DateOfBirthDateOnly 
+        {
+            get => DateOnly.FromDateTime(DateOfBirth);  // inicializované gettery a settery
+            set => DateOfBirth = value.ToDateTime(TimeOnly.Parse("10:00:00"));
+            // uloží do DateOfBirth value.překonvertovanou ToDateTime do kterého mi chybí Time, tak si jej vytvoříme v parametru
+         //   set => DateOfBirth = value.ToDateTime(new TimeOnly(0));  - alternátiva, která vloží 00:00:00
+        }
         public DateTime DateOfBirth { get; set; }
 
         public Address HomeAddress { get; set; } = new Address();
