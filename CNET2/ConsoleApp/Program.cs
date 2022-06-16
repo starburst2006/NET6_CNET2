@@ -1,4 +1,5 @@
 ﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System.Linq;
 
@@ -9,6 +10,18 @@ using var db = new PersonContext();
 
 //db.Persons.AddRange(dataset);
 //db.SaveChanges();
+
+//var contracts = db.Contracts;
+//var i = 0;
+//foreach(var item in contracts)
+//{
+//   var comp = new Company(){Name =$"Test Company {i++}"};
+//    item.Company = comp;
+//    var addr = new Address(){ City = "Brno", Street = $"ulice{i}" };
+//    item.Company.Address = addr;
+//}
+//  db.SaveChanges();
+
 
 Console.WriteLine("ok");
 
