@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    [Index(nameof(Email))]
+    [Index(nameof(Email))]  // vytvoření indexů v databázi nad sloupcem Email
     public class Person
     {
         #region konstruktory
@@ -41,7 +41,7 @@ namespace Model
             }
         }
 
-        [NotMapped]       // nebude v databázi ale je napojen na db tzn když do něj zapíšu, uloží to do db přes property DateOfBirth, GUI budu předhazovat toto
+        [NotMapped]       // instrukce pro EF, že nebude vytvářet v databázi sloupec ale pomocí getterů a setterů je napojen na db tzn když do něj zapíšu, uloží to do db přes property DateOfBirth, GUI budu předhazovat toto
         public DateOnly DateOfBirthDateOnly 
         {
             get => DateOnly.FromDateTime(DateOfBirth);  // inicializované gettery a settery

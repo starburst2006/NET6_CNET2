@@ -4,13 +4,11 @@ using Model;
 using System.Linq;
 
 
-var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
+//var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
 
-
-using var db = new PersonContext();
-
-db.Persons.AddRange(dataset);
-db.SaveChanges();
+//using var db = new PersonContext();
+//db.Persons.AddRange(dataset);
+//db.SaveChanges();
 
 
 //db.Persons.AddRange(dataset);
