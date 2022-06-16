@@ -1,7 +1,47 @@
 ﻿@page "/AddPerson"
+@using Model
+@inject PersonContext db
+
 
 <h3>Přidat osobu</h3>
 
-@code {
+<div class="mb-3">
+  <label for="firstname" class="form-label">Jmeno</label>
+  <input @bind-value=Person.FirstName type="text" class="form-control" id="firstname" placeholder="Jméno">
+</div>
+<div class="mb-3">
+  <label for="lastname" class="form-label">Příjmení</label>
+  <input @bind-value=Person.LastName type="text" class="form-control" id="lastname" placeholder="Příjmení">
+</div>
+<div class="mb-3">
+  <label for="email" class="form-label">e-mail</label>
+  <input @bind-value=Person.Email type="email" class="form-control" id="email" placeholder="E-mail">
+</div>
 
+<div>
+    @message
+</div>
+
+
+<button type="button" class="btn btn-primary" @onclick=Save >Ulož změny</button>
+
+@code {
+    public Person Person { get; set; } = new Person();
+    public string message { get; set; } = string.Empty;
+
+    void Save()
+    {
+        Person.HomeAddress = new Address() { City = "", Street = ""};
+        if (Person.Id > 0)
+        {
+            message = "Upraveno";
+        }
+        else
+        {
+            db.Persons.Add(Person);
+            message = "Uloženo";
+        }           
+        db.SaveChanges();
+
+    }
 }
