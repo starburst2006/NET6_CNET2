@@ -4,26 +4,23 @@ using Model;
 using System.Linq;
 
 
-//var dataset = Data.Serialization.LoadFromXML(@"C:\Users\Student\source\repos\starburst2006\PersonDataset\dataset.xml");
+//var dataset = Data.Serialization.LoadFromXML(@"C:\Users\marek.bohanes\source\repos\starburst2006\NET6_CNET2\PersonDataset\dataset.xml");
 
 //using var db = new PersonContext();
-//db.Persons.AddRange(dataset);
-//db.SaveChanges();
-
 
 //db.Persons.AddRange(dataset);
 //db.SaveChanges();
 
 //var contracts = db.Contracts;
 //var i = 0;
-//foreach(var item in contracts)
+//foreach (var item in contracts)
 //{
-//   var comp = new Company(){Name =$"Test Company {i++}"};
+//    var comp = new Company() { Name = $"Test Company {i++}" };
 //    item.Company = comp;
-//    var addr = new Address(){ City = "Brno", Street = $"ulice{i}" };
+//    var addr = new Address() { City = "Brno", Street = $"ulice{i}" };
 //    item.Company.Address = addr;
 //}
-//  db.SaveChanges();
+//db.SaveChanges();
 
 
 Console.WriteLine("ok");
